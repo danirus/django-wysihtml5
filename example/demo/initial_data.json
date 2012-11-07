@@ -1,0 +1,39 @@
+[
+    {
+        "pk": 1,
+        "model": "sites.site",
+        "fields": {
+            "domain": "localhost:8000",
+            "name": "localhost:8000"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "Administrator",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2012-11-07T19:48:29.536",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$9tIx8DuB1nP5$Ak2t8EgR7Kwz1bWQ638v7S2aUQvxD2pmNcIH/vLILzA=",
+            "email": "admin@example.com",
+            "date_joined": "2012-01-12T10:49:55"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "articles.article",
+        "fields": {
+            "body": "<h1 class=\"wysiwyg-text-align-center\">Introduction</h1><p class=\"wysiwyg-text-align-center\">Just the good ol' boys, never meanin' no harm. Beats all you've ever saw, been in trouble with the law since the day they was born. Straight'nin' the curve, flat'nin' the hills. Someday the mountain might get 'em, but the law never will. Makin' their way, the only way they know how, that's just a little bit more than the law will allow. Just good ol' boys, wouldn't change if they could, fightin' the system like a true modern day Robin Hood.</p>\r\n\r\n\r\n\r\n<h2 class=\"wysiwyg-text-align-center\">First Section</h2><p>An example list with colors:</p><ol><li>This is the <span class=\"wysiwyg-color-silver\"><b>silver</b></span>&nbsp;color</li><li>This is the <span class=\"wysiwyg-color-gray\"><b>gray</b></span> color</li><li>This is the <span class=\"wysiwyg-color-maroon\"><b>maroon</b></span> color</li><li>This is the <span class=\"wysiwyg-color-red\"><b>red</b></span> color</li><li>This is the <span class=\"wysiwyg-color-purple\"><b>purple</b></span> color</li><li>This is the <span class=\"wysiwyg-color-green\"><b>green</b></span> color</li><li>This is the <span class=\"wysiwyg-color-olive\"><b>olive</b></span> color</li><li>This is the <span class=\"wysiwyg-color-navy\"><b>navy</b></span> color</li><li>This is the <span class=\"wysiwyg-color-blue\"><b>blue</b></span> color</li></ol><h2 class=\"wysiwyg-text-align-center\">Second Section</h2>The following image has been inserted through the \"insertImage\" command provided with <a rel=\"nofollow\" target=\"_blank\" href=\"https://github.com/xing/wysihtml5\">Wysihtml5</a>:<br><br><div class=\"wysiwyg-text-align-center\"><img alt=\"\" src=\"http://mw2.google.com/mw-panoramio/photos/medium/64824025.jpg\"><br></div><p>That's the&nbsp;<b>Ordesa Valley</b>, in the Pyrenees, <i>Huesca</i>, <i>Spain</i>.&nbsp;The image is retrieved from&nbsp;<a rel=\"nofollow\" target=\"_blank\" href=\"http://www.panoramio.com/map\">Panoramio</a> by simple posting the URL in the \"insert link\" control. Install the app, get&nbsp;admin access and taste it. It's delicious!<br></p><h2 class=\"wysiwyg-text-align-center\">Section Three</h2>An example quote here:<br><blockquote>I don't know half of you half as well as I should like, and I like less than half of you half as well as you deserve.&nbsp;</blockquote><p class=\"wysiwyg-text-align-right\"><i><span class=\"wysiwyg-color-gray\">Bilbo Baggins</span></i></p>",
+            "abstract": "This is a Django example project using django-wysihtml5. The following text has been formatted using the rich-text editor Wysihtml5. Django-wysihtml5 offers a widget that converts a regular Textarea into a rich text editor based on Wysihtml5. The editor comes with a set of formatting commands available through a toolbar.",
+            "slug": "example-article",
+            "publish": "2012-11-06T21:04:03",
+            "title": "Example Article"
+        }
+    }
+]

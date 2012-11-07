@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}django-wysihtml5 - demo{% endblock %}</title>
+    {% block css %}{% endblock %}
+  </head>
+  <body>
+    <div style="font-size:1.5em">
+      {% block header %}Demo Site - {% endblock %}
+    </div>
+
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

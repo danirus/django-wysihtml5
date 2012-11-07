@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block header %}{{ block.super }}Homepage{% endblock %}
+
+{% block content %}
+<p>{% blocktrans %}The demo site has an Articles App with a model <code>Article</code> whose field 'body' uses a widget based on the rich text editor <a href="https://github.com/xing/wysihtml5">Wysihtml5</a>.{% endblocktrans %}</p>
+<ul>
+  <li><a href="{% url articles-index %}">{% trans "Article list" %}</a></li>
+</ul>
+<p style="padding: 5px 15px; background:#ddd; font-weight:bold; text-align:right">django-wysihtml5</p>
+{% endblock %}

@@ -1,0 +1,267 @@
+.wysihtml5-editor-toolbar {
+    position: relative;
+}
+
+header {
+  display: block;
+  border-radius: 4px;
+  width: 610px;
+  background: #f6f6f6;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  border: 1px solid #ddd\9; /* IE 8 and below */
+  background-image: linear-gradient(bottom, rgb(238,238,238) 0%, rgb(255,255,255) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(238,238,238) 0%, rgb(255,255,255) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(238,238,238) 0%, rgb(255,255,255) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(238,238,238) 0%, rgb(255,255,255) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(238,238,238) 0%, rgb(255,255,255) 100%);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+  font-size: 0;
+  text-align: center;
+}
+
+DIV.commands {
+    margin: 5px 0 0;
+    padding: 0px;
+    display: inline-block;
+}
+DIV.commands > SPAN {
+    padding: 0px;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.3);
+    background: rgba(212, 212, 212, 0.3);
+}
+
+[data-wysihtml5-command],
+[data-wysihtml5-action],
+.fore-color, .heading-selector {
+  position: relative;
+  list-style: none;
+  font-size: 12px;
+  display: inline-block;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
+
+[data-wysihtml5-command]:after,
+[data-wysihtml5-action]:after,
+.fore-color:after, .heading-selector:after {
+  content: "";
+  background-image: url(../img/toolbar.png);
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+[data-wysihtml5-command]:hover,
+[data-wysihtml5-action]:hover,
+.fore-color:hover, .heading-selector:hover {
+    box-shadow: 0 0 3px 0 rgba(128, 128, 221, 0.9);
+    background: #ddedff;
+}
+
+[data-wysihtml5-command="bold"]:after {
+  background-position: 0px 0px;
+}
+
+[data-wysihtml5-command="italic"]:after {
+  background-position: -24px 0px;
+}
+
+[data-wysihtml5-command="underline"]:after {
+  background-position: -48px 0px;
+}
+
+[data-wysihtml5-command="justifyLeft"]:after {
+  background-position: -72px 0px;
+}
+
+[data-wysihtml5-command="justifyCenter"]:after {
+  background-position: -96px 0px;
+}
+
+[data-wysihtml5-command="justifyRight"]:after {
+  background-position: -120px 0px;
+}
+
+[data-wysihtml5-command="insertOrderedList"]:after {
+  background-position: -144px 0px;
+}
+
+[data-wysihtml5-command="insertUnorderedList"]:after {
+  background-position: -168px 0px;
+}
+
+[data-wysihtml5-command="insertImage"]:after {
+  background-position: -192px 0px;
+}
+
+[data-wysihtml5-command="createLink"]:after {
+  background-position: -216px 0px;
+}
+
+.heading-selector:after {
+  background-position: -240px 0px;
+}
+
+.heading-selector DIV {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 24px;
+  right: -1px;
+  left: -2px;
+  border: 1px solid #ccc;
+  border-top: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.heading-selector SPAN {
+  display: block;
+  margin: 3px;
+  width: auto;
+  border: 0;
+  height: 15px;
+}
+
+.heading-selector SPAN:after {
+  display: none;
+}
+
+.heading-selector:hover DIV {
+  display: block;
+}
+
+
+[data-wysihtml5-command="insertHTML"]:after {
+  background-position: -264px 0px;
+}
+
+.fore-color:after {
+  background-position: -288px 0px;
+}
+
+.fore-color DIV {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 24px;
+  right: -1px;
+  left: -2px;
+  border: 1px solid #ccc;
+  border-top: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.fore-color SPAN {
+  display: block;
+  margin: 3px;
+  width: auto;
+  border: 0;
+  height: 15px;
+}
+
+.fore-color SPAN:after {
+  display: none;
+}
+
+.fore-color:hover DIV {
+  display: block;
+}
+
+.fore-color [data-wysihtml5-command-value="silver"] {
+  background: silver !important;
+}
+
+
+.fore-color [data-wysihtml5-command-value="gray"] {
+  background: gray !important;
+}
+
+.fore-color [data-wysihtml5-command-value="maroon"] {
+  background: maroon !important;
+}
+
+.fore-color [data-wysihtml5-command-value="red"] {
+  background: red !important;
+}
+
+.fore-color [data-wysihtml5-command-value="purple"] {
+  background: purple !important;
+}
+
+.fore-color [data-wysihtml5-command-value="green"] {
+  background: green !important;
+}
+
+.fore-color [data-wysihtml5-command-value="olive"] {
+  background: olive !important;
+}
+
+.fore-color [data-wysihtml5-command-value="navy"] {
+  background: navy !important;
+}
+
+.fore-color [data-wysihtml5-command-value="blue"] {
+  background: blue !important;
+}
+
+.fore-color .wysihtml5-command-active {
+  outline: 1px solid #666;
+  outline-offset: 1px;
+}
+
+.wysihtml5-commands-disabled .fore-color DIV {
+  display: none;
+}
+
+[data-wysihtml5-action="change_view"]:after {
+  background-position: -312px 0px;
+}
+
+.format-block-p:after {
+  background-position: -336px 0px;
+}
+
+.wysihtml5-dialogs {
+    margin: 2px auto;
+    padding: 2px;
+    border-radius: 4px;
+    background: #efefef;
+}
+
+[data-wysihtml5-dialog] {
+    width: 100%;
+    display: inline-block;
+    margin: 2px 2px 1px 15px;
+}
+
+[data-wysihtml5-dialog] > LABEL {
+    float: none;
+    display: inline;
+    width: inherit;
+    cursor: default;
+    padding: 0px;
+    font-size: 1.1em;
+    vertical-align: middle;
+    color: #113;
+}
+
+[data-wysihtml5-dialog] > A { display: inline }
+
+INPUT[data-wysihtml5-dialog-field] { 
+    margin: 0 5px 0 0;
+    padding: 4px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    width: 320px;
+    font-size: 1.1em;
+}

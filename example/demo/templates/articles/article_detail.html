@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block css %}
+<link href="{{ STATIC_URL }}wysihtml5/css/stylesheet.css" rel="Stylesheet">
+{% endblock %}
+
+{% block header %}{{ block.super }}{% trans "Article Detail" %}{% endblock %}
+
+{% block content %}
+<H2 style="text-align:center">{{ object.title }}</H2>
+<div style="width:540px; margin:10px auto; font-size:1.1em">
+  {{ object.abstract|safe }}
+</div>
+<div style="font-size:.8em; text-align:center; font-style:italic">Published {{ object.publish }}</div>
+<div style="width:640px; margin:10px auto">
+  {{ object.body|safe }}
+</div>
+
+<a href="{% url articles-index %}">{% trans "back to the articles list" %}</a>
+{% endblock %}
