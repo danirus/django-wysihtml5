@@ -36,6 +36,7 @@ Customization
 =============
 
 You can customize two commands:
+
 * Create Link
 * Insert Image
 
@@ -48,6 +49,7 @@ Once you have the function edit your settings file and declare the key that corr
 
 
 Have questions?
+---------------
 
 * On Wysihtml5: `go here <https://github.com/xing/wysihtml5>`_
 * On this app: `post a comment <http://danir.us/projects/django-wysihtml5-10>`_
