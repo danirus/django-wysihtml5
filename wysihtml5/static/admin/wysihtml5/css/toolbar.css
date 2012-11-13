@@ -98,11 +98,11 @@ DIV.commands > SPAN {
   background-position: -168px 0px;
 }
 
-[data-wysihtml5-command="insertImage"]:after {
+[data-wysihtml5-command="insertImage"]:after, .insert-image:after {
   background-position: -192px 0px;
 }
 
-[data-wysihtml5-command="createLink"]:after {
+[data-wysihtml5-command="createLink"]:after, .create-link:after {
   background-position: -216px 0px;
 }
 

@@ -40,6 +40,10 @@ def render_insert_image_dialog(id):
         }
 
 
+create_link_cmd = getattr(settings, "WYSIHTML5_CMD_CREATE_LINK", "createLink")
+
+insert_image_cmd = getattr(settings, "WYSIHTML5_CMD_INSERT_IMAGE", "insertImage")
+
 create_link_dialog = getattr(
     settings,
     "WYSIHTML5_FUNC_CREATE_LINK_DIALOG",
@@ -74,8 +78,8 @@ def render_toolbar_widget(id):
     <span data-wysihtml5-command="justifyRight" title="Paragraph right justified" class="command"></span>\
     <span data-wysihtml5-command="insertOrderedList" title="Insert an ordered list" class="command"></span>\
     <span data-wysihtml5-command="insertUnorderedList" title="Insert an unordered list" class="command"></span>\
-    <span data-wysihtml5-command="insertImage" title="Insert an image" class="command"></span>\
-    <span data-wysihtml5-command="createLink" title="Insert a link" class="command"></span>\
+    <span data-wysihtml5-command="%(insertImageCmd)s" title="Insert an image" class="command insert-image"></span>\
+    <span data-wysihtml5-command="%(createLinkCmd)s" title="Insert a link" class="command create-link"></span>\
     <span data-wysihtml5-command="insertHTML" title="Insert a quote" class="command" data-wysihtml5-command-value="<blockquote>quote</blockquote>"></span>\
     <span data-wysihtml5-command-group="foreColor" title="Color the selected text" class="fore-color">\
       <div>\
@@ -96,6 +100,8 @@ def render_toolbar_widget(id):
     %(createLinkDialog)s %(insertImageDialog)s\
   </div>\
 </div>' % { "id": id, 
+            "createLinkCmd": create_link_cmd,
+            "insertImageCmd": insert_image_cmd,
             "createLinkDialog": get_function(create_link_dialog)(id), 
             "insertImageDialog": get_function(insert_image_dialog)(id) }
     return widget
