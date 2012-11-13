@@ -180,7 +180,7 @@ var wysihtml5ParserRules = {
         },
         "a": {
             "check_attributes": {
-                "href": "url" // if you compiled master manually then change this from 'url' to 'href'
+                "href": "href" // if you compiled master manually then change this from 'url' to 'href'
             },
             "set_attributes": {
                 "rel": "nofollow",
@@ -191,7 +191,7 @@ var wysihtml5ParserRules = {
             "check_attributes": {
                 "width": "numbers",
                 "alt": "alt",
-                "src": "url", // if you compiled master manually then change this from 'url' to 'src'
+                "src": "src", // if you compiled master manually then change this from 'url' to 'src'
                 "height": "numbers"
             },
             "add_class": {

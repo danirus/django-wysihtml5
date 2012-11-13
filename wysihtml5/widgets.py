@@ -117,13 +117,13 @@ class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
             'all': (settings.STATIC_URL + "admin/wysihtml5/css/toolbar.css",)
         }
         js = (settings.STATIC_URL + "admin/wysihtml5/js/advanced.js",
-              settings.STATIC_URL + "admin/wysihtml5/js/wysihtml5-0.3.0.min.js")
+              settings.STATIC_URL + "admin/wysihtml5/js/wysihtml5-0.4.0pre.min.js")
 
     def __init__(self, attrs=None):
         if not attrs:
-            attrs = {"rows": 15}
+            attrs = {"rows": 25}
         elif not attrs.get("rows", False):
-            attrs.update({"rows": 15})
+            attrs.update({"rows": 25})
         super(Wysihtml5AdminTextareaWidget, self).__init__(attrs=attrs)
 
     def render(self, name, value, attrs=None):

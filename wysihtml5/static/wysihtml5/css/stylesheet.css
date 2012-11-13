@@ -14,3 +14,6 @@
 
 .wysiwyg-float-left { float: left }
 .wysiwyg-float-right { float: right }
+
+IMG.wysiwyg-float-left { margin: 10px 20px 10px 0 }
+IMG.wysiwyg-float-right { margin: 10px 0 20px 10px }
