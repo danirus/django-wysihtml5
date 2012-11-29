@@ -147,3 +147,7 @@ LOGGING = {
         }
     }
 }
+
+WYSIHTML5_TOOLBAR = {
+    "foreColor": { "active": False }
+}
