@@ -11,6 +11,7 @@ setup(
     name = "django-wysihtml5",
     version = "1.0a1",
     packages = find_packages(),
+    include_package_data = True,
     license = "MIT",
     description = "Simple Django app that provides a Wysihtml5 rich text editor textarea widget.",
     long_description = "Simple Django app that provides a Wysihtml5 rich text editor textarea widget, with a complete command toolbar to give HTML format to your documents.",
