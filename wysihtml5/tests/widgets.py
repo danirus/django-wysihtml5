@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 
-from django.conf import settings
 from django.test import TestCase as DjangoTestCase
 from django.utils.html import conditional_escape
 
@@ -31,15 +30,15 @@ class Wysihtml5AdminTextareaWidgetTestCase(DjangoTestCase):
     </span>\
     <span data-wysihtml5-command="formatBlock" title="Make a paragraph block" data-wysihtml5-command-value="p" class="command format-block-p"></span>\
     <span data-wysihtml5-command="bold" title="Make text bold (CTRL + B)" class="command"></span>\
-    <span data-wysihtml5-command="italic" title="Make text bold (CTRL + I)" class="command"></span>\
-    <span data-wysihtml5-command="underline" title="Make text bold (CTRL + U)" class="command"></span>\
+    <span data-wysihtml5-command="italic" title="Make text italic (CTRL + I)" class="command"></span>\
+    <span data-wysihtml5-command="underline" title="Underline text (CTRL + U)" class="command"></span>\
     <span data-wysihtml5-command="justifyLeft" title="Paragraph left justified" class="command"></span>\
     <span data-wysihtml5-command="justifyCenter" title="Paragraph center justified" class="command"></span>\
     <span data-wysihtml5-command="justifyRight" title="Paragraph right justified" class="command"></span>\
     <span data-wysihtml5-command="insertOrderedList" title="Insert an ordered list" class="command"></span>\
     <span data-wysihtml5-command="insertUnorderedList" title="Insert an unordered list" class="command"></span>\
-    <span data-wysihtml5-command="insertImage" title="Insert an image" class="command"></span>\
-    <span data-wysihtml5-command="createLink" title="Insert a link" class="command"></span>\
+    <span data-wysihtml5-command="insertImage" title="Insert an image" class="command insert-image"></span>\
+    <span data-wysihtml5-command="createLink" title="Insert a link" class="command create-link"></span>\
     <span data-wysihtml5-command="insertHTML" title="Insert a quote" class="command" data-wysihtml5-command-value="<blockquote>quote</blockquote>"></span>\
     <span data-wysihtml5-command-group="foreColor" title="Color the selected text" class="fore-color">\
       <div>\
@@ -57,5 +56,5 @@ class Wysihtml5AdminTextareaWidgetTestCase(DjangoTestCase):
     <span data-wysihtml5-action="change_view" title="Show HTML" class="action" unselectable="on"></span>\
   </div>\
   <div class="wysihtml5-dialogs">\
-    <div data-wysihtml5-dialog="createLink" style="display:none">  <label>Link:</label>&nbsp;  <input data-wysihtml5-dialog-field="href" value="http://">  <a data-wysihtml5-dialog-action="save" class="button">Ok</a>&nbsp;  <a data-wysihtml5-dialog-action="cancel" class="button">Cancel</a></div> <div data-wysihtml5-dialog="insertImage" style="display:none">  <label>Image:</label>&nbsp;  <input data-wysihtml5-dialog-field="src" value="http://">  <a data-wysihtml5-dialog-action="save" class="button">Ok</a>&nbsp;  <a data-wysihtml5-dialog-action="cancel" class="button">Cancel</a></div>  </div></div><textarea rows="15" cols="40" name="test" class="vLargeTextField">One giant leap for mankind</textarea></div><script>var editor = new wysihtml5.Editor("unknown",{toolbar:"unknown-toolbar", parserRules: wysihtml5ParserRules, placeholderText: "Use the toolbar below to edit the content here", stylesheets: "/static/wysihtml5/css/stylesheet.css"});</script>'
-        self.assertTrue(expected == rendered)
+    <div data-wysihtml5-dialog="createLink" style="display:none">  <label>Link:</label>&nbsp;  <input data-wysihtml5-dialog-field="href" value="http://">  <a data-wysihtml5-dialog-action="save" class="button">Ok</a>&nbsp;  <a data-wysihtml5-dialog-action="cancel" class="button">Cancel</a></div> <div data-wysihtml5-dialog="insertImage" style="display:none">  <label>Image:</label>&nbsp;  <input data-wysihtml5-dialog-field="src" value="http://">  <a data-wysihtml5-dialog-action="save" class="button">Ok</a>&nbsp;  <a data-wysihtml5-dialog-action="cancel" class="button">Cancel</a></div>  </div></div><textarea rows="25" cols="40" name="test" class="vLargeTextField">One giant leap for mankind</textarea></div><script>var editor = new wysihtml5.Editor("unknown",{toolbar:"unknown-toolbar", parserRules: wysihtml5ParserRules, placeholderText: "Use the toolbar below to edit the content here", stylesheets: "/static/wysihtml5/css/stylesheet.css"});</script>'
+        self.assertHTMLEqual(expected, rendered)
