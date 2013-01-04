@@ -3,7 +3,11 @@
 from django.conf import settings
 from django.contrib.admin.widgets import AdminTextareaWidget
 from django.forms.util import flatatt
-from django.utils.encoding import force_unicode
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    # Django < 1.4.2
+    from django.utils.encoding import force_unicode as force_text
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
@@ -186,7 +190,7 @@ class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
         final_attrs = self.build_attrs(attrs, name=name)
         textarea_widget = u'<textarea%s>%s</textarea>' % (
             flatatt(final_attrs),
-            conditional_escape(force_unicode(value)))
+            conditional_escape(force_text(value)))
         toolbar_widget = render_toolbar_widget(final_attrs.get("id", "unknown"))
         js_init_widget = render_js_init_widget(final_attrs.get("id", "unknown"),
                                                EDITOR_CONF)

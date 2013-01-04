@@ -11,7 +11,7 @@ def get_function(function_path):
     try:
         mod_name, func_name = function_path.rsplit('.', 1)
         mod = import_module(mod_name)
-    except ImportError, e:
+    except ImportError as e:
         raise ImproperlyConfigured(('Error importing module %s: "%s"' %
                                    (mod_name, e)))
     return getattr(mod, func_name)
