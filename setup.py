@@ -9,7 +9,7 @@ test.run_tests = run_tests
 
 setup(
     name = "django-wysihtml5",
-    version = "1.0a1",
+    version = "1.0a2",
     packages = find_packages(),
     include_package_data = True,
     license = "MIT",

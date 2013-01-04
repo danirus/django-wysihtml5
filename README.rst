@@ -35,6 +35,59 @@ Demo site
 Customization
 =============
 
+Two settings allow you to customize the editor:
+
+ * WYSIHTML5_EDITOR -> editor's parameters customization
+ * WYSIHTML5_TOOLBAR -> editor's commands and toolbar customization
+
+
+WYSIHTML5_EDITOR setting
+------------------------
+
+Customize the Wysihtml5 Editor parameters, as in `here <https://github.com/xing/wysihtml5/wiki/Configuration>`_, by defining ``WYSIHTML5_EDITOR`` in your settings file. ``WYSIHTML5_EDITOR`` is a dictionary that defaults to::
+
+    EDITOR_CONF = {
+        # Give the editor a name, the name will also be set as class 
+        # name on the iframe and on the iframe's body
+        'name': 'null',
+        # Whether the editor should look like the textarea (by adopting styles)
+        'style': 'true',
+        # Id of the toolbar element, pass falsey value if you don't want 
+        # any toolbar logic
+        'toolbar': 'null',
+    	# Whether urls, entered by the user should automatically become 
+        # clickable-links
+        'autoLink': 'true',
+        # Object which includes parser rules (set this to 
+        # examples/rules/spec.json or your own spec, otherwise only span 
+        # tags are allowed!)
+        'parserRules': 'wysihtml5ParserRules',
+        # Parser method to use when the user inserts content via copy & paste
+        'parser': 'wysihtml5.dom.parse || Prototype.K',
+        # Class name which should be set on the contentEditable element in 
+        # the created sandbox iframe, can be styled via the 'stylesheets' option
+        'composerClassName': '"wysihtml5-editor"',
+        # Class name to add to the body when the wysihtml5 editor is supported
+        'bodyClassName': '"wysihtml5-supported"',
+        # Array (or single string) of stylesheet urls to be loaded in the 
+        # editor's iframe
+        'stylesheets': '["%s"]' % (settings.STATIC_URL + 
+                                   "wysihtml5/css/stylesheet.css"),
+        # Placeholder text to use, defaults to the placeholder attribute 
+        # on the textarea element
+        'placeholderText': 'null',
+        # Whether the composer should allow the user to manually resize 
+        # images, tables etc.
+        'allowObjectResizing': 'true',
+        # Whether the rich text editor should be rendered on touch devices 
+        # (wysihtml5 >= 0.3.0 comes with basic support for iOS 5)
+        'supportTouchDevices': 'true'
+    }
+
+
+WYSIHTML5_TOOLBAR setting
+-------------------------
+
 You can customize Wysihtml5 commands configuration by defining ``WYSIHTML5_TOOLBAR`` in your settings file. ``WYSIHTML5_TOOLBAR`` is a dictionary that defaults to::
 
     WYSIHTML5_TOOLBAR = {
