@@ -8,7 +8,7 @@ from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
-from wysihtml5.conf import TOOLBAR_CONF
+from wysihtml5.conf import EDITOR_CONF, TOOLBAR_CONF
 from wysihtml5.utils import get_function
 
 
@@ -141,8 +141,28 @@ def render_toolbar_widget(id):
 </div>'
     return widget
 
-def render_js_init_widget(id):
-    widget = u'<script>var editor = new wysihtml5.Editor("%(id)s",{toolbar:"%(id)s-toolbar", parserRules: wysihtml5ParserRules, placeholderText: "%(placeholder)s", stylesheets: "%(cssfile)s"});</script>' % {"id": id, "placeholder": _("Use the toolbar below to edit the content here"), "cssfile": settings.STATIC_URL + "wysihtml5/css/stylesheet.css"}
+def render_js_init_widget(id, config):
+    options = {"id": id}
+    options.update(config)
+    if options.get('toolbar', 'null') == 'null':
+        options['toolbar'] = '"%s-toolbar"' % id
+    widget = u'''
+<script>
+  var editor = new wysihtml5.Editor("%(id)s",{
+    name:                 %(name)s,
+    style:                %(style)s,
+    toolbar:              %(toolbar)s,
+    autoLink:             %(autoLink)s,
+    parserRules:          %(parserRules)s,
+    parser:               %(parser)s,
+    composerClassName:    %(composerClassName)s,
+    bodyClassName:        %(bodyClassName)s,
+    stylesheets:          %(stylesheets)s,
+    placeholderText:      %(placeholderText)s,
+    allowObjectResizing:  %(allowObjectResizing)s,
+    supportTouchDevices:  %(supportTouchDevices)s
+  });
+</script>''' % options
     return widget
 
 class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
@@ -168,7 +188,8 @@ class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
             flatatt(final_attrs),
             conditional_escape(force_unicode(value)))
         toolbar_widget = render_toolbar_widget(final_attrs.get("id", "unknown"))
-        js_init_widget = render_js_init_widget(final_attrs.get("id", "unknown"))
+        js_init_widget = render_js_init_widget(final_attrs.get("id", "unknown"),
+                                               EDITOR_CONF)
         return mark_safe(u'<div style="display:inline-block">' +
                          toolbar_widget + 
                          textarea_widget + 

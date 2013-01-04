@@ -1,0 +1,31 @@
+BODY {
+    background-color: rgb(255, 255, 255); 
+    color: rgb(0, 0, 0); 
+    cursor: auto; 
+    font-family: 'Lucida Grande', Verdana, Arial, sans-serif; 
+    font-size: 11px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: normal; 
+    line-height: normal; 
+    letter-spacing: normal; 
+    text-align: -webkit-auto; 
+    text-decoration: none; 
+    text-indent: 0px; 
+    text-rendering: auto; 
+    word-break: normal; 
+    word-wrap: break-word; 
+    word-spacing: 0px;
+}
+
+.wysihtml5-text P,
+.wysihtml5-text OL, .wysihtml5-text OL LI,
+.wysihtml5-text UL, .wysihtml5-text UL LI,
+.wysihtml5-text BLOCKQUOTE,
+.wysihtml5-text DIV { font-size: 13px }
+.wysihtml5-text H1 { font-size: 2.2em }
+.wysihtml5-text H2 { font-size: 2.0em }
+.wysihtml5-text H3 { font-size: 1.8em }
+.wysihtml5-text H4 { font-size: 1.6em }
+.wysihtml5-text H5 { font-size: 1.4em }
+.wysihtml5-text H6 { font-size: 1.2em }

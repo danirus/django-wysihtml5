@@ -9,11 +9,11 @@
 
 {% block content %}
 <H2 style="text-align:center">{{ object.title }}</H2>
-<div style="width:540px; margin:10px auto; font-size:1.1em">
+<div style="width:540px; margin:10px auto">
   {{ object.abstract|safe }}
 </div>
 <div style="font-size:.8em; text-align:center; font-style:italic">Published {{ object.publish }}</div>
-<div style="width:640px; margin:10px auto">
+<div class="wysihtml5-text" style="width:640px; margin:10px auto">
   {{ object.body|safe }}
 </div>
 

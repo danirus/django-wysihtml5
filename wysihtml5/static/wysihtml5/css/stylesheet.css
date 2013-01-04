@@ -1,3 +1,20 @@
+BODY.wysihtml5-editor {
+    padding: 5px;
+    font-size: 13px;
+}
+
+.wysihtml5-editor DIV,
+.wysihtml5-editor OL, .wysihtml5-editor OL LI,
+.wysihtml5-editor UL, .wysihtml5-editor UL LI,
+.wysihtml5-editor BLOCKQUOTE,
+.wysihtml5-editor P { font-size: 13px }
+.wysihtml5-editor H1 { font-size: 2.2em }
+.wysihtml5-editor H2 { font-size: 2.0em }
+.wysihtml5-editor H3 { font-size: 1.8em }
+.wysihtml5-editor H4 { font-size: 1.6em }
+.wysihtml5-editor H5 { font-size: 1.4em }
+.wysihtml5-editor H6 { font-size: 1.2em }
+
 .wysiwyg-color-green { color: green }
 .wysiwyg-color-silver { color: silver }
 .wysiwyg-color-maroon { color: maroon }
