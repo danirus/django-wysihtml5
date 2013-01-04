@@ -161,6 +161,7 @@ def render_js_init_widget(id, config):
     parser:               %(parser)s,
     composerClassName:    %(composerClassName)s,
     bodyClassName:        %(bodyClassName)s,
+    useLineBreaks:        %(useLineBreaks)s,
     stylesheets:          %(stylesheets)s,
     placeholderText:      %(placeholderText)s,
     allowObjectResizing:  %(allowObjectResizing)s,

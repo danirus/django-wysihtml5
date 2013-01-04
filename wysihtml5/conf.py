@@ -31,6 +31,9 @@ EDITOR_CONF = {
     'composerClassName': '"wysihtml5-editor"',
     # Class name to add to the body when the wysihtml5 editor is supported
     'bodyClassName': '"wysihtml5-supported"',
+    # By default wysihtml5 will insert <br> for line breaks, set this to
+    # false to use <p>
+    'useLineBreaks': 'true',
     # Array (or single string) of stylesheet urls to be loaded in the 
     # editor's iframe
     'stylesheets': '["%s"]' % (settings.STATIC_URL + 
