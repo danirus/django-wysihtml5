@@ -1,6 +1,9 @@
 #-*- coding: utf-8 -*-
 
+import re
+
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.functional import allow_lazy
 from django.utils.importlib import import_module
 
 
@@ -15,3 +18,16 @@ def get_function(function_path):
         raise ImproperlyConfigured(('Error importing module %s: "%s"' %
                                    (mod_name, e)))
     return getattr(mod, func_name)
+
+
+def keeptags(value, tags):
+    tags = [re.escape(tag) for tag in tags.split()]
+
+    def _replacer(match):
+        if match.group(1) in tags:
+            return match.group(0)
+        else:
+            return u''
+
+    return re.sub(r'</?([^> ]+).*?>', _replacer, value)
+keeptags = allow_lazy(keeptags)
