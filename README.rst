@@ -1,6 +1,12 @@
 Django-wysihtml5
 ================
 
+|TravisCI|_
+
+.. |TravisCI| image:: https://secure.travis-ci.org/danirus/django-wysihtml5.png?branch=master
+.. _TravisCI: https://travis-ci.org/danirus/django-wysihtml5
+
+
 By Daniel Rus Morales <http://danir.us/>
 
 * http://pypi.python.org/pypi/django-wysihtml5/
