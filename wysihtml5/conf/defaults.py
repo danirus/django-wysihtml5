@@ -1,14 +1,8 @@
 #-*- coding: utf-8 -*-
 
-from copy import deepcopy
-
 from django.conf import settings
 
-
-WYSIHTML5_EDITOR = getattr(settings, "WYSIHTML5_EDITOR", {})
-WYSIHTML5_TOOLBAR = getattr(settings, "WYSIHTML5_TOOLBAR", {})
-
-EDITOR_CONF = {
+WYSIHTML5_EDITOR = {
     # Give the editor a name, the name will also be set as class 
     # name on the iframe and on the iframe's body
     'name': 'null',
@@ -49,7 +43,7 @@ EDITOR_CONF = {
     'supportTouchDevices': 'true'
 }
 
-TOOLBAR_CONF = {
+WYSIHTML5_TOOLBAR = {
     "formatBlockHeader": { 
         "active": True,
         "command_name": "formatBlock",
@@ -129,21 +123,3 @@ TOOLBAR_CONF = {
         "render_icon": "wysihtml5.widgets.render_changeView_icon"
     },
 }
-
-
-def initialize_editor_conf():
-    for key in WYSIHTML5_EDITOR:
-        if key in EDITOR_CONF:
-            EDITOR_CONF[key] = WYSIHTML5_EDITOR[key]
-
-
-def initialize_toolbar_conf():
-    for key in WYSIHTML5_TOOLBAR:
-        if key in TOOLBAR_CONF:
-            for subkey in WYSIHTML5_TOOLBAR[key]:
-                TOOLBAR_CONF[key][subkey] = WYSIHTML5_TOOLBAR[key][subkey]
-        else:
-            TOOLBAR_CONF[key] = WYSIHTML5_TOOLBAR[key]
-
-initialize_editor_conf()
-initialize_toolbar_conf()

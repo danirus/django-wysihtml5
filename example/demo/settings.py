@@ -150,5 +150,6 @@ LOGGING = {
 }
 
 WYSIHTML5_TOOLBAR = {
-    "foreColor": { "active": False }
+    "foreColor": { "active": False },
+    "createLink": { "active": False }
 }

@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 
-from django.conf import settings
 from django.contrib.admin.widgets import AdminTextareaWidget
 from django.forms.util import flatatt
 try:
@@ -12,7 +11,7 @@ from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
-from wysihtml5.conf import EDITOR_CONF, TOOLBAR_CONF
+from wysihtml5.conf import settings
 from wysihtml5.utils import get_function
 
 
@@ -59,43 +58,43 @@ def render_formatBlockHeader_icon(id):
         <span data-wysihtml5-command="%(command_name)s" data-wysihtml5-command-value="h5">H5</span>\
         <span data-wysihtml5-command="%(command_name)s" data-wysihtml5-command-value="h6">H6</span>\
       </div>\
-    </span>' % { "command_name": TOOLBAR_CONF['formatBlockHeader']['command_name'] }
+    </span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['formatBlockHeader']['command_name'] }
 
 def render_formatBlockParagraph_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Make a paragraph block" data-wysihtml5-command-value="p" class="command format-block-p"></span>' % { "command_name": TOOLBAR_CONF['formatBlockParagraph']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Make a paragraph block" data-wysihtml5-command-value="p" class="command format-block-p"></span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['formatBlockParagraph']['command_name'] }
 
 def render_bold_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Make text bold (CTRL + B)" class="command"></span>' % { "command_name": TOOLBAR_CONF['bold']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Make text bold (CTRL + B)" class="command"></span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['bold']['command_name'] }
 
 def render_italic_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Make text italic (CTRL + I)" class="command"></span>' % { "command_name": TOOLBAR_CONF['italic']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Make text italic (CTRL + I)" class="command"></span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['italic']['command_name'] }
 
 def render_underline_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Underline text (CTRL + U)" class="command"></span>' % { "command_name": TOOLBAR_CONF['underline']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Underline text (CTRL + U)" class="command"></span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['underline']['command_name'] }
 
 def render_justifyLeft_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Paragraph left justified" class="command"></span>' % { "command_name": TOOLBAR_CONF['justifyLeft']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Paragraph left justified" class="command"></span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['justifyLeft']['command_name'] }
 
 def render_justifyCenter_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Paragraph center justified" class="command"></span>' % { "command_name": TOOLBAR_CONF['justifyCenter']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Paragraph center justified" class="command"></span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['justifyCenter']['command_name'] }
 
 def render_justifyRight_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Paragraph right justified" class="command"></span>' % { "command_name": TOOLBAR_CONF['justifyRight']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Paragraph right justified" class="command"></span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['justifyRight']['command_name'] }
 
 def render_insertOrderedList_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert an ordered list" class="command"></span>' % { "command_name": TOOLBAR_CONF['insertOrderedList']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert an ordered list" class="command"></span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['insertOrderedList']['command_name'] }
 
 def render_insertUnorderedList_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert an unordered list" class="command"></span>' % { "command_name": TOOLBAR_CONF['insertUnorderedList']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert an unordered list" class="command"></span>' % { "command_name": settings.WYSIHTML5_TOOLBAR['insertUnorderedList']['command_name'] }
 
 def render_insertImage_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert an image" class="command insert-image"></span>' % { 'command_name': TOOLBAR_CONF['insertImage']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert an image" class="command insert-image"></span>' % { 'command_name': settings.WYSIHTML5_TOOLBAR['insertImage']['command_name'] }
 
 def render_createLink_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert a link" class="command create-link"></span>' % { 'command_name': TOOLBAR_CONF['createLink']['command_name'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert a link" class="command create-link"></span>' % { 'command_name': settings.WYSIHTML5_TOOLBAR['createLink']['command_name'] }
 
 def render_insertHTML_icon(id):
-    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert a quote" class="command" data-wysihtml5-command-value="%(command_value)s"></span>'  % {  'command_name': TOOLBAR_CONF['insertHTML']['command_name'] , 'command_value': TOOLBAR_CONF['insertHTML']['command_value'] }
+    return u'<span data-wysihtml5-command="%(command_name)s" title="Insert a quote" class="command" data-wysihtml5-command-value="%(command_value)s"></span>'  % {  'command_name': settings.WYSIHTML5_TOOLBAR['insertHTML']['command_name'] , 'command_value': settings.WYSIHTML5_TOOLBAR['insertHTML']['command_value'] }
 
 def render_foreColor_icon(id):
     return u'\
@@ -111,10 +110,10 @@ def render_foreColor_icon(id):
         <span data-wysihtml5-command="%(command_name)s" data-wysihtml5-command-value="navy" unselectable="on"></span>\
         <span data-wysihtml5-command="%(command_name)s" data-wysihtml5-command-value="blue" unselectable="on"></span>\
       </div>\
-    </span>' % { 'command_name': TOOLBAR_CONF['foreColor']['command_name'] }
+    </span>' % { 'command_name': settings.WYSIHTML5_TOOLBAR['foreColor']['command_name'] }
 
 def render_changeView_icon(id):
-    return '<span data-wysihtml5-action="%(command_name)s" title="Show HTML" class="action" unselectable="on"></span>' % { 'command_name': TOOLBAR_CONF['changeView']['command_name'] }
+    return '<span data-wysihtml5-action="%(command_name)s" title="Show HTML" class="action" unselectable="on"></span>' % { 'command_name': settings.WYSIHTML5_TOOLBAR['changeView']['command_name'] }
 
 def render_toolbar_widget(id):
     widget = u'\
@@ -194,7 +193,7 @@ class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
             conditional_escape(force_text(value)))
         toolbar_widget = render_toolbar_widget(final_attrs.get("id", "unknown"))
         js_init_widget = render_js_init_widget(final_attrs.get("id", "unknown"),
-                                               EDITOR_CONF)
+                                               settings.WYSIHTML5_EDITOR)
         return mark_safe(u'<div style="display:inline-block">' +
                          toolbar_widget + 
                          textarea_widget + 
@@ -204,12 +203,15 @@ class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
 
 def initialize_widget_conf():
     global render_cmd_icon, render_cmd_dialog
-    for key in TOOLBAR_CONF.keys():
-        if TOOLBAR_CONF[key].get("active", False):
-            render_cmd_icon[key] = TOOLBAR_CONF[key].get(
-                "render_icon", "wysihtml5.widgets.render_blank")
-            if TOOLBAR_CONF[key].get("render_dialog", False):
-                render_cmd_dialog[key] = TOOLBAR_CONF[key]["render_dialog"]
-        else: render_cmd_icon[key] = "wysihtml5.widgets.render_blank"
+    for k, v in settings.WYSIHTML5_TOOLBAR.iteritems():
+        if v.get("active", False):
+            render_cmd_icon[k] = v.get("render_icon", 
+                                       "wysihtml5.widgets.render_blank")
+            if v.get("render_dialog", False):
+                render_cmd_dialog[k] = v["render_dialog"]
+        else: 
+            render_cmd_icon[k] = "wysihtml5.widgets.render_blank"
+            if v.get("render_dialog", False):
+                render_cmd_dialog[k] = "wysihtml5.widgets.render_blank"
 
 initialize_widget_conf()

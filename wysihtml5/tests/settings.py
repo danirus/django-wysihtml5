@@ -84,3 +84,8 @@ INSTALLED_APPS = [
     'wysihtml5',
     'wysihtml5.tests',
 ]
+
+WYSIHTML5_TOOLBAR = {
+    "foreColor": { "active": False },
+    "createLink": { "active": False }
+}
