@@ -123,3 +123,9 @@ WYSIHTML5_TOOLBAR = {
         "render_icon": "wysihtml5.widgets.render_changeView_icon"
     },
 }
+
+# This is necessary to protect the field of content in cases where
+# the user disables JavaScript in the browser, so that Wysihtml5 can't
+# do the filter job.
+WYSIHTML5_ALLOWED_TAGS = ('h1 h2 h3 h4 h5 h6 div p b i u'
+                          ' ul ol li span img a blockquote')

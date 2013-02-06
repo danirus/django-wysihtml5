@@ -2,14 +2,15 @@
 
 from django.db.models import fields
 
+from wysihtml5.conf import settings
 from wysihtml5.utils import keeptags
 from wysihtml5.widgets import Wysihtml5AdminTextareaWidget
 
 
 class Wysihtml5TextField(fields.TextField):
     def __init__(self, *args, **kwargs):
-        self.keep_tags = kwargs.pop('keep_tags', 'h1 h2 h3 h4 h5 h6 div p i u'
-                                    ' ul ol li span img a blockquote')
+        self.keep_tags = kwargs.pop('keep_tags', 
+                                    settings.WYSIHTML5_ALLOWED_TAGS)
         super(Wysihtml5TextField, self).__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):
