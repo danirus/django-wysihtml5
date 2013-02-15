@@ -28,7 +28,8 @@ def suite():
     else:
         from django.db.models.loading import load_app
         from django.conf import settings
-        settings.INSTALLED_APPS = settings.INSTALLED_APPS + ['wysihtml5.tests',]
+        settings.INSTALLED_APPS = list(settings.INSTALLED_APPS) + \
+                                  ['wysihtml5.tests']
         map(load_app, settings.INSTALLED_APPS)
 
     from wysihtml5.tests import fields, widgets
