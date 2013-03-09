@@ -242,14 +242,14 @@ class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
         textarea_widget = u'<textarea%s>%s</textarea>' % (
             flatatt(final_attrs),
             conditional_escape(force_text(value)))
-        toolbar_widget = render_toolbar_widget(final_attrs.get("id", "unknown"))
-        pos = final_attrs['id'].find('__prefix__')
+        wid = final_attrs.get('id', 'unknown')
+        toolbar_widget = render_toolbar_widget(wid)
+        pos = wid.find('__prefix__')
         if pos != -1:
-            js_widget = render_js_delay_widget(final_attrs['id'], pos,
+            js_widget = render_js_delay_widget(wid, pos, 
                                                settings.WYSIHTML5_EDITOR)
         else:
-            js_widget = render_js_init_widget(final_attrs["id"],
-                                              settings.WYSIHTML5_EDITOR)
+            js_widget = render_js_init_widget(wid, settings.WYSIHTML5_EDITOR)
         return mark_safe(u'<div style="display:inline-block">' +
                          toolbar_widget + 
                          textarea_widget + 

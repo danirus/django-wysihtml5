@@ -73,7 +73,7 @@ class Wysihtml5AdminTextareaWidgetTestCase(DjangoTestCase):
   <div class="wysihtml5-dialogs">\
     <div data-wysihtml5-dialog="insertImage" style="display:none">  <label>Image:</label>&nbsp;  <input data-wysihtml5-dialog-field="src" value="http://">  <a data-wysihtml5-dialog-action="save" class="button">Ok</a>&nbsp;  <a data-wysihtml5-dialog-action="cancel" class="button">Cancel</a></div>  </div></div><textarea rows="25" cols="40" name="test" class="vLargeTextField">One giant leap for mankind</textarea></div>\
 <script>\
-var editor = new wysihtml5.Editor("unknown",{ name: null, style: true, toolbar: "unknown-toolbar", autoLink: true, parserRules: wysihtml5ParserRules, parser: wysihtml5.dom.parse || Prototype.K, composerClassName: "wysihtml5-editor", bodyClassName: "wysihtml5-supported", useLineBreaks: true, stylesheets: ["/static/wysihtml5/css/stylesheet.css"], placeholderText: null, allowObjectResizing: true, supportTouchDevices: true });\
+new wysihtml5.Editor("unknown",{ name: null, style: true, toolbar: "unknown-toolbar", autoLink: true, parserRules: wysihtml5ParserRules, parser: wysihtml5.dom.parse || Prototype.K, composerClassName: "wysihtml5-editor", bodyClassName: "wysihtml5-supported", useLineBreaks: true, stylesheets: ["/static/wysihtml5/css/stylesheet.css"], placeholderText: null, allowObjectResizing: true, supportTouchDevices: true });\
 </script>'
         self.maxDiff = None
         self.assertHTMLEqual(expected, rendered)
