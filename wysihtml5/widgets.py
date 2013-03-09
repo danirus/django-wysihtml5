@@ -144,6 +144,56 @@ def render_toolbar_widget(id):
 </div>'
     return widget
 
+
+def render_js_delay_widget(id, pos, config):
+    options = {"id": id}
+    options.update(config)
+    if not options.get('name', None) or options['name'] == 'null':
+        options['name'] = '"%s"' % id[3:]
+    if not options.get('toolbar', None) or options['toolbar'] == 'null':
+        options['toolbar'] = '"%s-toolbar"' % id
+    options['prefixid'] = id[0:pos]
+    widget = u'''
+<script>
+  setTimeout(function() {
+    var id = '%(id)s';
+    var name = '%(name)s';
+    var toolbar = %(toolbar)s;
+    if(typeof(window._wysihtml5_inited) == 'undefined') {
+      window._wysihtml5_inited = []
+    }
+    if(typeof(window._wysihtml5_inited[id]) == 'undefined') {
+      window._wysihtml5_inited[id] = true;
+    } else {
+      var totforms = parseInt(document.getElementById('%(prefixid)sTOTAL_FORMS').value)-1;
+      var newid = id.replace(/__prefix__/, totforms);
+      var name = name.replace(/__prefix__/, totforms);
+      var newtoolbar = toolbar.replace(/__prefix__/, totforms);
+      django.jQuery('#'+toolbar).attr('id', newtoolbar);
+      console.log(newid);
+      if(document.getElementById(newid)) {
+        new wysihtml5.Editor(newid,{
+          name:                 name,
+          style:                %(style)s,
+          toolbar:              newtoolbar,
+          autoLink:             %(autoLink)s,
+          parserRules:          %(parserRules)s,
+          parser:               %(parser)s,
+          composerClassName:    %(composerClassName)s,
+          bodyClassName:        %(bodyClassName)s,
+          useLineBreaks:        %(useLineBreaks)s,
+          stylesheets:          %(stylesheets)s,
+          placeholderText:      %(placeholderText)s,
+          allowObjectResizing:  %(allowObjectResizing)s,
+          supportTouchDevices:  %(supportTouchDevices)s
+        });
+      }
+    }
+  }, 0);
+</script>''' % options
+    return widget
+
+
 def render_js_init_widget(id, config):
     options = {"id": id}
     options.update(config)
@@ -151,7 +201,7 @@ def render_js_init_widget(id, config):
         options['toolbar'] = '"%s-toolbar"' % id
     widget = u'''
 <script>
-  var editor = new wysihtml5.Editor("%(id)s",{
+  new wysihtml5.Editor("%(id)s",{
     name:                 %(name)s,
     style:                %(style)s,
     toolbar:              %(toolbar)s,
@@ -168,6 +218,7 @@ def render_js_init_widget(id, config):
   });
 </script>''' % options
     return widget
+
 
 class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
 
@@ -192,13 +243,18 @@ class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
             flatatt(final_attrs),
             conditional_escape(force_text(value)))
         toolbar_widget = render_toolbar_widget(final_attrs.get("id", "unknown"))
-        js_init_widget = render_js_init_widget(final_attrs.get("id", "unknown"),
+        pos = final_attrs['id'].find('__prefix__')
+        if pos != -1:
+            js_widget = render_js_delay_widget(final_attrs['id'], pos,
                                                settings.WYSIHTML5_EDITOR)
+        else:
+            js_widget = render_js_init_widget(final_attrs["id"],
+                                              settings.WYSIHTML5_EDITOR)
         return mark_safe(u'<div style="display:inline-block">' +
                          toolbar_widget + 
                          textarea_widget + 
                          u'</div>' +
-                         js_init_widget)
+                         js_widget)
 
 
 def initialize_widget_conf():
