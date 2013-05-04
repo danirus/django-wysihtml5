@@ -115,45 +115,104 @@ def render_foreColor_icon(id):
 def render_changeView_icon(id):
     return '<span data-wysihtml5-action="%(command_name)s" title="Show HTML" class="action" unselectable="on"></span>' % { 'command_name': settings.WYSIHTML5_TOOLBAR['changeView']['command_name'] }
 
-def render_toolbar_widget(id):
-    widget = u'\
+
+class Wysihtml5TextareaWidget(AdminTextareaWidget):
+
+    class Media:
+        css = {
+            'all': ('wysihtml5/css/toolbar.css',)
+        }
+        js = ('wysihtml5/js/advanced.js',
+              'wysihtml5/js/wysihtml5-0.4.0pre.min.js')
+
+    def __init__(self, attrs=None, editor_settings=None, toolbar_settings=None):
+        if not attrs:
+            attrs = {"rows": 25}
+        elif not attrs.get("rows", False):
+            attrs.update({"rows": 25})
+
+        if editor_settings:
+            self.editor_settings = editor_settings
+        else: 
+            self.editor_settings = settings.WYSIHTML5_EDITOR
+
+        if toolbar_settings:
+            self.toolbar_settings = toolbar_settings
+        else:
+            self.toolbar_settings = settings.WYSIHTML5_TOOLBAR
+
+        self.render_cmd_icon = {}
+        self.render_cmd_dialog = {}
+        for k, v in self.toolbar_settings.iteritems():
+            if v.get("active", False):
+                self.render_cmd_icon[k] = v.get("render_icon", 
+                                                "wysihtml5.widgets.render_blank")
+                if v.get("render_dialog", False):
+                    self.render_cmd_dialog[k] = v["render_dialog"]
+            else: 
+                self.render_cmd_icon[k] = "wysihtml5.widgets.render_blank"
+                if v.get("render_dialog", False):
+                    self.render_cmd_dialog[k] = "wysihtml5.widgets.render_blank"
+
+        super(Wysihtml5TextareaWidget, self).__init__(attrs=attrs)
+
+    def render(self, name, value, attrs=None):
+        if value is None: value = ''
+        final_attrs = self.build_attrs(attrs, name=name)
+        textarea_widget = u'<textarea%s>%s</textarea>' % (
+            flatatt(final_attrs),
+            conditional_escape(force_text(value)))
+        wid = final_attrs.get('id', 'unknown')
+        toolbar_widget = self.render_toolbar_widget(wid)
+        pos = wid.find('__prefix__')
+        if pos != -1:
+            js_widget = self.render_js_delay_widget(wid, pos)
+        else:
+            js_widget = self.render_js_init_widget(wid) 
+            return mark_safe(u'<div style="display:inline-block">' +
+                         toolbar_widget + 
+                         textarea_widget + 
+                         u'</div>' +
+                         js_widget)
+
+    def render_toolbar_widget(self, id):
+        widget = u'\
 <div id="%(id)s-toolbar" class="wysihtml5-editor-toolbar">\
   <div class="commands">' % { "id": id }
-    widget += get_function(render_cmd_icon['formatBlockHeader'])(id)
-    widget += get_function(render_cmd_icon['formatBlockParagraph'])(id)
-    widget += get_function(render_cmd_icon['bold'])(id)
-    widget += get_function(render_cmd_icon['italic'])(id)
-    widget += get_function(render_cmd_icon['underline'])(id)
-    widget += get_function(render_cmd_icon['justifyLeft'])(id)
-    widget += get_function(render_cmd_icon['justifyCenter'])(id)
-    widget += get_function(render_cmd_icon['justifyRight'])(id)
-    widget += get_function(render_cmd_icon['insertOrderedList'])(id)
-    widget += get_function(render_cmd_icon['insertUnorderedList'])(id)
-    widget += get_function(render_cmd_icon['insertImage'])(id)
-    widget += get_function(render_cmd_icon['createLink'])(id)
-    widget += get_function(render_cmd_icon['insertHTML'])(id)
-    widget += get_function(render_cmd_icon['foreColor'])(id)
-    widget += get_function(render_cmd_icon['changeView'])(id)
-    widget += u'\
+        widget += get_function(self.render_cmd_icon['formatBlockHeader'])(id)
+        widget += get_function(self.render_cmd_icon['formatBlockParagraph'])(id)
+        widget += get_function(self.render_cmd_icon['bold'])(id)
+        widget += get_function(self.render_cmd_icon['italic'])(id)
+        widget += get_function(self.render_cmd_icon['underline'])(id)
+        widget += get_function(self.render_cmd_icon['justifyLeft'])(id)
+        widget += get_function(self.render_cmd_icon['justifyCenter'])(id)
+        widget += get_function(self.render_cmd_icon['justifyRight'])(id)
+        widget += get_function(self.render_cmd_icon['insertOrderedList'])(id)
+        widget += get_function(self.render_cmd_icon['insertUnorderedList'])(id)
+        widget += get_function(self.render_cmd_icon['insertImage'])(id)
+        widget += get_function(self.render_cmd_icon['createLink'])(id)
+        widget += get_function(self.render_cmd_icon['insertHTML'])(id)
+        widget += get_function(self.render_cmd_icon['foreColor'])(id)
+        widget += get_function(self.render_cmd_icon['changeView'])(id)
+        widget += u'\
   </div>\
   <div class="wysihtml5-dialogs">'
-    widget += get_function(render_cmd_dialog['createLink'])(id)
-    widget += get_function(render_cmd_dialog['insertImage'])(id)
-    widget += u'\
+        widget += get_function(self.render_cmd_dialog['createLink'])(id)
+        widget += get_function(self.render_cmd_dialog['insertImage'])(id)
+        widget += u'\
   </div>\
 </div>'
-    return widget
+        return widget
 
-
-def render_js_delay_widget(id, pos, config):
-    options = {"id": id}
-    options.update(config)
-    if not options.get('name', None) or options['name'] == 'null':
-        options['name'] = '"%s"' % id[3:]
-    if not options.get('toolbar', None) or options['toolbar'] == 'null':
-        options['toolbar'] = '"%s-toolbar"' % id
-    options['prefixid'] = id[0:pos]
-    widget = u'''
+    def render_js_delay_widget(self, id, position):
+        options = {"id": id}
+        options.update(self.editor_settings)
+        if not options.get('name', None) or options['name'] == 'null':
+            options['name'] = '"%s"' % id[3:]
+        if not options.get('toolbar', None) or options['toolbar'] == 'null':
+            options['toolbar'] = '"%s-toolbar"' % id
+        options['prefixid'] = id[0:position]
+        widget = u'''
 <script>
   setTimeout(function() {
     var id = '%(id)s';
@@ -191,15 +250,14 @@ def render_js_delay_widget(id, pos, config):
     }
   }, 0);
 </script>''' % options
-    return widget
+        return widget
 
-
-def render_js_init_widget(id, config):
-    options = {"id": id}
-    options.update(config)
-    if options.get('toolbar', 'null') == 'null':
-        options['toolbar'] = '"%s-toolbar"' % id
-    widget = u'''
+    def render_js_init_widget(self, id):
+        options = {"id": id}
+        options.update(self.editor_settings)
+        if options.get('toolbar', 'null') == 'null':
+            options['toolbar'] = '"%s-toolbar"' % id
+        widget = u'''
 <script>
   new wysihtml5.Editor("%(id)s",{
     name:                 %(name)s,
@@ -217,57 +275,4 @@ def render_js_init_widget(id, config):
     supportTouchDevices:  %(supportTouchDevices)s
   });
 </script>''' % options
-    return widget
-
-
-class Wysihtml5AdminTextareaWidget(AdminTextareaWidget):
-
-    class Media:
-        css = {
-            'all': (settings.STATIC_URL + "admin/wysihtml5/css/toolbar.css",)
-        }
-        js = (settings.STATIC_URL + "admin/wysihtml5/js/advanced.js",
-              settings.STATIC_URL + "admin/wysihtml5/js/wysihtml5-0.4.0pre.min.js")
-
-    def __init__(self, attrs=None):
-        if not attrs:
-            attrs = {"rows": 25}
-        elif not attrs.get("rows", False):
-            attrs.update({"rows": 25})
-        super(Wysihtml5AdminTextareaWidget, self).__init__(attrs=attrs)
-
-    def render(self, name, value, attrs=None):
-        if value is None: value = ''
-        final_attrs = self.build_attrs(attrs, name=name)
-        textarea_widget = u'<textarea%s>%s</textarea>' % (
-            flatatt(final_attrs),
-            conditional_escape(force_text(value)))
-        wid = final_attrs.get('id', 'unknown')
-        toolbar_widget = render_toolbar_widget(wid)
-        pos = wid.find('__prefix__')
-        if pos != -1:
-            js_widget = render_js_delay_widget(wid, pos, 
-                                               settings.WYSIHTML5_EDITOR)
-        else:
-            js_widget = render_js_init_widget(wid, settings.WYSIHTML5_EDITOR)
-        return mark_safe(u'<div style="display:inline-block">' +
-                         toolbar_widget + 
-                         textarea_widget + 
-                         u'</div>' +
-                         js_widget)
-
-
-def initialize_widget_conf():
-    global render_cmd_icon, render_cmd_dialog
-    for k, v in settings.WYSIHTML5_TOOLBAR.iteritems():
-        if v.get("active", False):
-            render_cmd_icon[k] = v.get("render_icon", 
-                                       "wysihtml5.widgets.render_blank")
-            if v.get("render_dialog", False):
-                render_cmd_dialog[k] = v["render_dialog"]
-        else: 
-            render_cmd_icon[k] = "wysihtml5.widgets.render_blank"
-            if v.get("render_dialog", False):
-                render_cmd_dialog[k] = "wysihtml5.widgets.render_blank"
-
-initialize_widget_conf()
+        return widget

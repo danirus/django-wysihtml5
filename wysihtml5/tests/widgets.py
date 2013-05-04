@@ -9,7 +9,7 @@ from django.test import TestCase as DjangoTestCase
 from django.utils.html import conditional_escape
 
 from wysihtml5.tests.models import ModelTest
-from wysihtml5.widgets import (Wysihtml5AdminTextareaWidget,
+from wysihtml5.widgets import (Wysihtml5TextareaWidget,
                                render_cmd_icon, render_cmd_dialog)
 
 
@@ -37,12 +37,12 @@ class Wysihtml5ToolbarTestCase(DjangoTestCase):
         self.assert_(dialog_create_link == None) # tests.settings disabled
 
 
-class Wysihtml5AdminTextareaWidgetTestCase(DjangoTestCase):
+class Wysihtml5TextareaWidgetTestCase(DjangoTestCase):
     def test_render_wysihtml5admintextarea_widget(self):
         neilmsg = ModelTest.objects.create(
             first_text="One small step for man", 
             second_text="One giant leap for mankind")
-        w = Wysihtml5AdminTextareaWidget()
+        w = Wysihtml5TextareaWidget()
         rendered = conditional_escape(w.render("test", neilmsg.second_text))
         expected = u'\
 <div style="display:inline-block"><div id="unknown-toolbar" class="wysihtml5-editor-toolbar">\

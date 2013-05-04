@@ -8,7 +8,7 @@ WYSIHTML5_EDITOR = {
     'name': 'null',
     # Whether the editor should look like the textarea (by adopting styles)
     'style': 'true',
-    # Id of the toolbar element, pass falsey value if you don't want 
+    # Id of the toolbar element, pass false if you don't want 
     # any toolbar logic
     'toolbar': 'null',
     # Whether urls, entered by the user should automatically become 

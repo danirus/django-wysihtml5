@@ -1,21 +1,25 @@
 {% extends "base.html" %}
-{% load i18n %}
 
 {% block css %}
 <link href="{{ STATIC_URL }}wysihtml5/css/stylesheet.css" rel="Stylesheet">
+<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="Stylesheet">
 {% endblock %}
 
-{% block header %}{{ block.super }}{% trans "Article Detail" %}{% endblock %}
+{% block header %}
+{{ block.super }}&nbsp;<small>Article detail</small>
+{% endblock %}
 
 {% block content %}
-<H2 style="text-align:center">{{ object.title }}</H2>
-<div style="width:540px; margin:10px auto">
-  {{ object.abstract|safe }}
+<div class="container">
+  <H2 style="text-align:center">{{ object.title }}</H2>
+  <div style="width:540px; margin:10px auto">
+    {{ object.abstract|safe }}
+  </div>
+  <div style="font-size:.8em; text-align:center; font-style:italic">Published {{ object.publish }}</div>
+  <div class="wysihtml5-text" style="width:640px; margin:10px auto">
+    {{ object.body|safe }}
+  </div>
+  <hr/>
+  <p><a href="{% url articles-index %}">back to the articles list</a></p>
 </div>
-<div style="font-size:.8em; text-align:center; font-style:italic">Published {{ object.publish }}</div>
-<div class="wysihtml5-text" style="width:640px; margin:10px auto">
-  {{ object.body|safe }}
-</div>
-
-<a href="{% url articles-index %}">{% trans "back to the articles list" %}</a>
 {% endblock %}

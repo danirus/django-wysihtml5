@@ -5,13 +5,18 @@
     <title>{% block title %}django-wysihtml5 - demo{% endblock %}</title>
     <link href="{{ STATIC_URL }}css/theme.css" rel="Stylesheet">
     {% block css %}{% endblock %}
+    <script src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+    {% block js %}{% endblock %}
   </head>
   <body>
-    <div style="font-size:1.5em">
-      {% block header %}Demo Site - {% endblock %}
-    </div>
+    <div class="container">
+      <div class="page-header">
+	<h1>{% block header %}Demo Site&nbsp;{% endblock %}</h1>
+	<p>This demo site uses <a href="https://github.com/danirus/django-wysihtml5">django-wysihtml5</a> in the admin UI and <a href="https://github.com/jhollingworth/bootstrap-wysihtml5/">bootstrap-wysihtml5</a> to create and update articles in the frontend.</p>
+      </div>
 
-    {% block content %}
-    {% endblock %}
+      {% block content %}
+      {% endblock %}
+    </div>
   </body>
 </html>

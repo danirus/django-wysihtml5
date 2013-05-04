@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block css %}
+{{ form.media.css }}
+{% endblock %}
+
+{% block js %}
+{{ form.media.js }}
+{% endblock %}
+
+{% block header %}
+{{ block.super }}&nbsp;<small>New article</small>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="hero-unit">
+    <h3>Create a new article</h3>
+    <hr/>
+    <form action="{% url 'articles-article-new' %}" method="post" class="form-horizontal">{% csrf_token %}
+      {% for field in form %}
+      <div class="control-group">
+	<label class="control-label" for="{{ field.name }}">{{ field.label }}</label>
+	<div class="controls">{{ field }}</div>
+      </div>
+      {% endfor %}
+      <div class="control-group">
+	<div class="controls">
+	  <input type="submit" name="create" class="btn btn-primary" value="create"/>
+	</div>
+      </div>
+    </form>
+  </div>
+  <hr/>
+  <p>
+    <a href="{% url 'articles-index' %}">back to the articles list</a>
+  </p>
+</div>
+{% endblock %}

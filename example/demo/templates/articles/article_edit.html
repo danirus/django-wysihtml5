@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block css %}
+{{ form.media.css }}
+{% endblock %}
+
+{% block js %}
+{{ form.media.js }}
+{% endblock %}
+
+{% block header %}{{ block.super }}{% trans "Edit article" %}{% endblock %}
+
+{% block content %}
+<h2>{% trans "Edit article" %}</h2>
+{{ form }}
+{% endblock %}

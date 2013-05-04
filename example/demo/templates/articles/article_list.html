@@ -1,20 +1,32 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load url from future %}
 
-{% block header %}{{ block.super }}{% trans "Article List" %}{% endblock %}
+{% block css %}
+<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="Stylesheet">
+{% endblock %}
+
+{% block header %}
+{{ block.super }}&nbsp;<small>Article list</small>
+{% endblock %}
 
 {% block content %}
 {% if object_list %}
-<UL>
-  {% for article in object_list %}
-  <li>
-    <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-    <span style="font-size:0.8em">{{ article.publish|date:"d-F-Y" }}</span>
-  </li>
-{% endfor %}
-</UL>
-{% endif %}
-<p style="padding: 5px 15px; background:#ddd">
-  <a href="{% url homepage %}">{% trans "Home" %}</a>
-</p>
+<div class="container">
+  <UL>
+    {% for article in object_list %}
+    <li>
+      <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+      <span style="font-size:0.8em">{{ article.publish|date:"d-F-Y" }}</span>
+    </li>
+    {% endfor %}
+    <li>
+      <a href="{% url 'articles-article-new' %}">New article</a>
+    </li>
+  </UL>
+  {% endif %}
+  <hr/>
+  <p>
+    <a href="{% url 'homepage' %}">Home</a>
+  </p>
+</div>
 {% endblock %}

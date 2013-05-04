@@ -1,12 +1,22 @@
 {% extends "base.html" %}
-{% load i18n %}
 
-{% block header %}{{ block.super }}Homepage{% endblock %}
+{% block css %}
+<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="Stylesheet">
+{% endblock %}
+
+{% block header %}
+{{ block.super }}&nbsp;<small>Homepage</small>
+{% endblock %}
 
 {% block content %}
-<p>{% blocktrans %}The demo site has an Articles App with a model <code>Article</code> whose field 'body' uses a widget based on the rich text editor <a href="https://github.com/xing/wysihtml5">Wysihtml5</a>.{% endblocktrans %}</p>
-<ul>
-  <li><a href="{% url articles-index %}">{% trans "Article list" %}</a></li>
-</ul>
-<p style="padding: 5px 15px; background:#ddd; font-weight:bold; text-align:right">django-wysihtml5</p>
+<div class="container">
+  <p>The demo site has an Articles App with a model <code>Article</code> whose field <code>body</code> uses a widget based on the rich text editor <a href="https://github.com/xing/wysihtml5">Wysihtml5</a>.</p>
+  <ul>
+    <li><a href="{% url articles-index %}">Article list</a></li>
+  </ul>
+  <hr/>
+  <p style="text-align:right">
+    <span style="font-size:1.2em;font-weight:bold;color:gray">django-wysihtml5</span>
+  </p>
+</div>
 {% endblock %}

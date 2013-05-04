@@ -31,11 +31,15 @@ Quick start
 Demo site
 =========
 
+The demo site (``example/demo/``) shows the widget in action. Follow the instructions to run the demo and go to the Admin UI to see how the widget looks like. For the public side the demo uses `bootstrap-wysihtml5 <https://github.com/jhollingworth/bootstrap-wysihtml5/>`_.
+
 1. Cd into the demo directory: ``cd django-wysihtml5/example/demo``
 2. Run syncdb with --no-input: ``python manage.py syncdb --noinput`` (user: admin, pwd: admin)
-3. Run the dev web server: ``python manage.py runserver``
-4. Hit the demo URL: `http://localhost:8000 <http://localhost:8000>`_ to see the example article fully formatted with Wysihtml5.
-5. Hit the demo admin URL: `http://localhost:8000/admin/ <http://localhost:8000/admin/>`_ to see the widget in action.
+3. Run collectstatic: ``python manage.py collectstatic``
+4. Run the dev web server: ``python manage.py runserver``
+5. Hit the demo URL: `http://localhost:8000 <http://localhost:8000>`_ to see the example article fully formatted with Wysihtml5.
+6. Hit the demo admin URL: `http://localhost:8000/admin/ <http://localhost:8000/admin/>`_ to see the widget in action.
+7. Visit the root URL to see a list of articles and add new ones: `http://localhost:8000/ <http://localhost:8000/>`_
 
 
 Customization

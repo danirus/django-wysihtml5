@@ -10,7 +10,7 @@ from django.forms.widgets import Textarea
 from django.test import TestCase as DjangoTestCase
 
 from wysihtml5.tests.models import ModelTest
-from wysihtml5.widgets import Wysihtml5AdminTextareaWidget
+from wysihtml5.widgets import Wysihtml5TextareaWidget
 
 
 class Wysihtml5TextFieldTestCase(DjangoTestCase):
@@ -19,7 +19,7 @@ class Wysihtml5TextFieldTestCase(DjangoTestCase):
         first_widget = form.fields.get("first_text").widget
         second_widget = form.fields.get("second_text").widget
         self.assertEqual(first_widget.__class__, Textarea)
-        self.assertEqual(second_widget.__class__, Wysihtml5AdminTextareaWidget)
+        self.assertEqual(second_widget.__class__, Wysihtml5TextareaWidget)
 
 
 class KeepTagsTestCase(DjangoTestCase):

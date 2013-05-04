@@ -4,7 +4,7 @@ from django.db.models import fields
 
 from wysihtml5.conf import settings
 from wysihtml5.utils import keeptags
-from wysihtml5.widgets import Wysihtml5AdminTextareaWidget
+from wysihtml5.widgets import Wysihtml5TextareaWidget
 
 
 class Wysihtml5TextField(fields.TextField):
@@ -14,7 +14,7 @@ class Wysihtml5TextField(fields.TextField):
         super(Wysihtml5TextField, self).__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):
-        defaults = {"widget": Wysihtml5AdminTextareaWidget}
+        defaults = {"widget": Wysihtml5TextareaWidget}
         defaults.update(kwargs)
         return super(Wysihtml5TextField, self).formfield(**defaults)
 

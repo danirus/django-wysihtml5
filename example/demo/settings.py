@@ -153,3 +153,61 @@ WYSIHTML5_TOOLBAR = {
     "foreColor": { "active": False },
     "createLink": { "active": False }
 }
+
+WYSIHTML5_BOOTSTRAP_TOOLBAR = {
+    "formatBlock": { 
+        "active": True,
+        "command_name": "formatBlock",
+        "render_icon": "twitter_bootstrap.render_formatBlock_icon"
+    },
+    "bold": { 
+        "active": True,
+        "command_name": "bold",
+        "render_icon": "twitter_bootstrap.render_bold_icon"
+    },
+    "italic": { 
+        "active": True,
+        "command_name": "italic",
+        "render_icon": "twitter_bootstrap.render_italic_icon"
+    },
+    "underline": { 
+        "active": True,
+        "command_name": "underline",
+        "render_icon": "twitter_bootstrap.render_underline_icon"
+    },
+    "insertUnorderedList": { 
+        "active": True,
+        "command_name": "insertUnorderedList",
+        "render_icon": "twitter_bootstrap.render_insertUnorderedList_icon"
+    },
+    "insertOrderedList": { 
+        "active": True,
+        "command_name": "insertOrderedList",
+        "render_icon": "twitter_bootstrap.render_insertOrderedList_icon"
+    },
+    "Outdent": { 
+        "active": True,
+        "command_name": "Outdent",
+        "render_icon": "twitter_bootstrap.render_Outdent_icon"
+    },
+    "Indent": { 
+        "active": True,
+        "command_name": "Indent",
+        "render_icon": "twitter_bootstrap.render_Indent_icon"
+    },
+    "createLink": { 
+        "active": True,
+        "command_name": "createLink",
+        "render_icon": "twitter_bootstrap.render_createLink_icon",
+    },
+    "insertImage": { 
+        "active": True,
+        "command_name": "insertImage",
+        "render_icon": "twitter_bootstrap.render_insertImage_icon",
+    },
+    "changeView": { 
+        "active": True,
+        "command_name": "change_view",
+        "render_icon": "twitter_bootstrap.render_changeView_icon"
+    },
+}
