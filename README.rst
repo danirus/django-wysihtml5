@@ -47,9 +47,9 @@ Customization
 
 Three settings allow you to customize the editor:
 
- * WYSIHTML5_EDITOR -> editor's parameters customization
- * WYSIHTML5_TOOLBAR -> editor's commands and toolbar customization
- * WYSIHTML5_ALLOWED_TAGS -> what HTML tags are allowed
+* WYSIHTML5_EDITOR -> editor's parameters customization
+* WYSIHTML5_TOOLBAR -> editor's commands and toolbar customization
+* WYSIHTML5_ALLOWED_TAGS -> what HTML tags are allowed
 
 
 WYSIHTML5_EDITOR setting
