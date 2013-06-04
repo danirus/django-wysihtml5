@@ -125,10 +125,16 @@ LOGGING = {
             'format': '%(levelname)s %(asctime)s %(module)s %(message)s'
         }
     },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false'],
         },
         'console': {
             'level': 'INFO',
@@ -211,3 +217,6 @@ WYSIHTML5_BOOTSTRAP_TOOLBAR = {
         "render_icon": "twitter_bootstrap.render_changeView_icon"
     },
 }
+
+WYSIHTML5_ALLOWED_TAGS = ('h1 h2 h3 h4 h5 h6 div p br b i u'
+                          ' ul ol li span img a blockquote')

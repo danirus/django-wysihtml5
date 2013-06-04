@@ -12,7 +12,7 @@ By Daniel Rus Morales <http://danir.us/>
 * http://pypi.python.org/pypi/django-wysihtml5/
 * http://github.com/danirus/django-wysihtml5/
 
-Simple Django app that provides a Wysihtml5 rich text editor textarea widget.
+Simple Django app that provides a Wysihtml5 widget. `Wysihtml5 <https://github.com/xing/wysihtml5>`_ is a reach-text editor.
 
 Includes a **demo project** and a **test suite**. If you commit code, please consider adding proper coverage (especially if it has a chance for a regression) in the test suite.
 
@@ -45,10 +45,11 @@ The demo site (``example/demo/``) shows the widget in action. Follow the instruc
 Customization
 =============
 
-Two settings allow you to customize the editor:
+Three settings allow you to customize the editor:
 
  * WYSIHTML5_EDITOR -> editor's parameters customization
  * WYSIHTML5_TOOLBAR -> editor's commands and toolbar customization
+ * WYSIHTML5_ALLOWED_TAGS -> what HTML tags are allowed
 
 
 WYSIHTML5_EDITOR setting
@@ -198,7 +199,15 @@ Customize commands by declaring them in the ``WYSIHTML5_TOOLBAR`` dictionary. Yo
 
 Only declare your customized commands and attributes, django-wysihtml5 will use the default settings for the rest.
 
-Look at the specific `demo_wysihtml5 <https://github.com/danirus/django-inline-media/tree/master/example/demo_wysihtml5>`_ site in `django-inline-media <https://github.com/danirus/django-inline-media>`_. It provides a customize ``insertImage`` command.  
+
+WYSIHTML5_ALLOWED_TAGS setting
+------------------------------
+
+Filter what HTML tags are allowed in the Django field by using this setting. Be careful about what tags you do allow as it is a potential source of malicious code. Only listed tags are allowed. By default only the following tags are allowed::
+
+    h1 h2 h3 h4 h5 h6 div p b i u ul ol li span img a blockquote
+
+
 
 Have questions?
 ---------------

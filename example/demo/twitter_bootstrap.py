@@ -41,7 +41,8 @@ class Wysihtml5BootstrapWidget(Wysihtml5TextareaWidget):
     "lists": true,
     "html": true,
     "link": true,
-    "image": true
+    "image": true,
+    "stylesheets": false
   });
 </script>''' % options
         return widget
