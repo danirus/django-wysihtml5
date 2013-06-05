@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 import re
 
@@ -27,7 +28,7 @@ def keeptags(value, tags):
         if match.group(1) in tags:
             return match.group(0)
         else:
-            return u''
+            return ''
 
     return re.sub(r'</?([^> ]+).*?>', _replacer, value)
 keeptags = allow_lazy(keeptags)
