@@ -1,8 +1,7 @@
 #-*- coding: utf-8 -*-
-try:
-    from BeautifulSoup import BeautifulSoup, NavigableString
-except ImportError:
-    from beautifulsoup import BeautifulSoup, NavigableString
+from __future__ import unicode_literals
+
+from bs4 import BeautifulSoup, NavigableString
 
 from django.forms.models import modelform_factory
 from django.test import TestCase as DjangoTestCase
@@ -16,7 +15,8 @@ from wysihtml5.widgets import (Wysihtml5TextareaWidget,
 class Wysihtml5ToolbarTestCase(DjangoTestCase):
     def setUp(self):
         ModelForm = modelform_factory(ModelTest)
-        self.soup = BeautifulSoup(unicode(ModelForm()))
+        # self.soup = BeautifulSoup(unicode(ModelForm()))
+        self.soup = BeautifulSoup(ModelForm().__str__())
 
     def test_command_disabled_in_settings(self):        
         # check an active command and the disabled one
@@ -44,7 +44,7 @@ class Wysihtml5TextareaWidgetTestCase(DjangoTestCase):
             second_text="One giant leap for mankind")
         w = Wysihtml5TextareaWidget()
         rendered = conditional_escape(w.render("test", neilmsg.second_text))
-        expected = u'\
+        expected = '\
 <div style="display:inline-block"><div id="unknown-toolbar" class="wysihtml5-editor-toolbar">\
   <div class="commands">\
     <span data-wysihtml5-command-group="formatBlock" title="Format text header" class="heading-selector">\

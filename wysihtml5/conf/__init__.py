@@ -1,3 +1,5 @@
+import six
+
 from django.conf import settings as django_settings
 from django.utils.functional import LazyObject
 
@@ -10,7 +12,7 @@ class LazySettings(LazyObject):
 
 def update_dict_in_depth(a, b):
     """Updates dict a in depth with values of dict b (not for sequences)"""
-    for k, v in b.iteritems():
+    for k, v in six.iteritems(b):
         if a.get(k, None) and type(v) == dict:
                 update_dict_in_depth(a[k], v)
         else:
