@@ -8,9 +8,10 @@ Django-wysihtml5
 
 Tested under:
 
-* Python 3.2 and Django 1.5.1
-* Python 2.7 and Django 1.5.1
-* Python 2.7 and Django 1.4.5
+* Python 3.2 and django 1.5.1: `builds <http://buildbot.danir.us/builders/django-wysihtml5-py32dj15>`_
+* Python 2.7 and django 1.5.1: `builds <http://buildbot.danir.us/builders/django-wysihtml5-py27dj15>`_
+* Python 2.7 and django 1.4.5: `builds <http://buildbot.danir.us/builders/django-wysihtml5-py27dj14>`_
+
 
 By Daniel Rus Morales <http://danir.us/>
 
