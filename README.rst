@@ -1,10 +1,15 @@
 Django-wysihtml5
 ================
 
-|TravisCI|_
+
+|downloads|_ |TravisCI|_
 
 .. |TravisCI| image:: https://secure.travis-ci.org/danirus/django-wysihtml5.png?branch=master
 .. _TravisCI: https://travis-ci.org/danirus/django-wysihtml5
+.. |downloads| image:: https://pypip.in/d/django-wysihtml5/badge.png
+        :target: https://pypi.python.org/pypi/django-wysihtml5
+.. _downloads: https://pypi.python.org/pypi/django-wysihtml5
+
 
 Tested under:
 
