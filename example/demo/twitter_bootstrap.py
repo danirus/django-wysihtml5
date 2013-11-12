@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 from wysihtml5.widgets import Wysihtml5TextareaWidget
 
@@ -23,17 +24,17 @@ class Wysihtml5BootstrapWidget(Wysihtml5TextareaWidget):
         super(Wysihtml5BootstrapWidget, self).__init__(attrs=attrs, **kwargs)
 
     def render_toolbar_widget(self, id):
-        return u''
+        return ''
 
     def render_js_delay_widget(self, id, position):
-        return u''
+        return ''
 
     def render_js_init_widget(self, id):
         options = {"id": id}
         options.update(self.editor_settings)
         if options.get('toolbar', 'null') == 'null':
             options['toolbar'] = '"%s-toolbar"' % id
-        widget = u'''
+        widget = '''
 <script>
   $("#%(id)s").wysihtml5({
     "font-styles": true,
