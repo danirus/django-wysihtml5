@@ -32,7 +32,7 @@ class Article(models.Model):
         db_table = 'demo_articles'
         ordering = ('-publish',)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @permalink
